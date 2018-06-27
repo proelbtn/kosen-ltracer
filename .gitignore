@@ -1,6 +1,5 @@
 *.o
-*.s
-*.x
 *.coff
 *.map
+src/scripts
 ltracer.mot
