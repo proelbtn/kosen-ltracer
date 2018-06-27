@@ -90,14 +90,14 @@ OUTPUT_FORMAT = -O srec --srec-forceS3
 #
 # インクルードディレクトリの追加("*****.h"指定のみ有効)
 #INCLUDES = -I./include
-INCLUDES = -I./
+INCLUDES = -I. -Iinclude
 # コンパイラオプションの指定
 #	-mh：H8/300Hシリーズ指定
 #	-mrelax：条件分岐コードの最適化
 #	-mint32：int型変数のビット数指定
 #	-O2：gccの最適化レベルの指定
 #	-Wall：コンパイル時の警告メッセージの選択(全て)
-CFLAGS = -mh -mrelax -mint32 -O2 $(INCLUDES) -Wall -Iinclude
+CFLAGS = -mh -mrelax -mint32 -O2 $(INCLUDES) -Wall
 
 #
 # 指定に合わせたスタートアップルーチンとリンカスクリプトの選択
