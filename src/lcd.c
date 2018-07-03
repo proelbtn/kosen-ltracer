@@ -2,8 +2,8 @@
 #include "h8-3069-iodef.h"
 
 #define TIMECONST 500
-#define TCONST40us 200
-#define TCONST1ms 5000
+#define TCONST40us 300
+#define TCONST1ms 8000
 #define LCD_RS 0x40
 #define LCD_RW 0x20
 #define LCD_E 0x10
