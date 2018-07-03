@@ -1,4 +1,4 @@
-#include "h8-3069-iodef.h"
+#include "const.h"
 
 /* 内部クロックφのときの1usあたりのGRA値 */
 #define TCONST1us 25

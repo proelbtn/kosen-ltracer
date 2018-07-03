@@ -1,27 +1,8 @@
-#include "h8-3069-int.h"
-#include "h8-3069-iodef.h"
+#include "const.h"
+
 #include "ad.h"
 #include "lcd.h"
 #include "timer.h"
-
-// =============================================================================
-
-#define FALSE 0
-#define TRUE 1
-
-#define UPPER 0
-#define LOWER 1
-#define LEFT 0
-#define RIGHT 1
-
-#define SENSOR_BUFFER_SIZE 16
-
-#define LCD_WIDTH 8
-#define LCD_HEIGHT 2
-
-// TODO: decide the time
-// timer count: unit = 1[us]
-#define TIMER_INT_TIME0 1000
 
 // =============================================================================
 
@@ -47,7 +28,7 @@ inline void lcd_buffer_clear();
 // =============================================================================
 
 int main() {
-    int i;
+    // 1. initialize step
 
     // enable ROM emulation
     ROMEMU();
@@ -57,7 +38,7 @@ int main() {
 
     // initialize sensor
     sensor_battery = 0;
-    for (i = 0; i < SENSOR_BUFFER_SIZE; i++) sensor_buffer[LEFT][i] = sensor_buffer[RIGHT][i] = 0;
+    for (int i = 0; i < SENSOR_BUFFER_SIZE; i++) sensor_buffer[LEFT][i] = sensor_buffer[RIGHT][i] = 0;
 
     // initialize lcd
     lcd_init();
@@ -71,7 +52,7 @@ int main() {
 
     // enable interrupt
     ENINT();
-
+    
     while(TRUE) {
         if (lcd_update_flag) {
             lcd_ensure_eof();
@@ -86,6 +67,8 @@ int main() {
     }
 }
 
+// =============================================================================
+
 inline void lcd_handler(void) {
     lcd_update_flag = TRUE;
 }
@@ -95,8 +78,10 @@ inline void ad_handler(void) {
 }
 
 inline void motor_handler(void) {
-
+       
 }
+
+// =============================================================================
 
 #pragma interrupt
 void int_imia0(void) {
@@ -119,6 +104,8 @@ void int_adi(void) {
 
     ENINT();
 }
+
+// =============================================================================
 
 inline void lcd_ensure_eof(void) {
     lcd_buffer[UPPER][LCD_WIDTH] = lcd_buffer[LOWER][LCD_WIDTH] = '\0';

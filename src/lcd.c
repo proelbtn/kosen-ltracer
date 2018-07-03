@@ -1,5 +1,5 @@
 #include <string.h>
-#include "h8-3069-iodef.h"
+#include "const.h"
 
 #define TIMECONST 500
 #define TCONST40us 300
