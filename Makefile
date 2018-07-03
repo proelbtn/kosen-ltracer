@@ -1,5 +1,5 @@
 TARGET = ltracer.mot
-SOURCE_C = src/main.c 
+SOURCE_C = src/main.c src/timer.c
 SOURCE_ASM = 
 
 
