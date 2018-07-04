@@ -96,7 +96,7 @@ void int_imia0(void) {
 void int_adi(void) {
     ad_stop();
 
-    sensor_buffer_ptr = (sensor_buffer_ptr + 1) & 0x0F;
+    sensor_buffer_ptr = (sensor_buffer_ptr + 1) & SENSOR_BUFFER_SIZE_FILTER;
 
     sensor_battery = ADDRAH; 
     sensor_buffer[LEFT][sensor_buffer_ptr] = ADDRBH;

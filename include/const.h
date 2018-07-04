@@ -10,6 +10,7 @@
 #define RIGHT 1
 
 #define SENSOR_BUFFER_SIZE 16
+#define SENSOR_BUFFER_SIZE_FILTER 0x0F
 
 #define LCD_WIDTH 8
 #define LCD_HEIGHT 2
