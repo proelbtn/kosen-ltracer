@@ -7,7 +7,7 @@
 /*     DISINT();  <= これ以降は全割り込み不許可状態になる    */
 /* 注意：この他に割り込みコントローラの設定が必要!!          */
 
-#define ENINT()   asm volatile ("andc.b #0x7f,ccr") 
-#define ENINT1()  asm volatile ("andc.b #0xbf,ccr") 
-#define DISINT()  asm volatile ("orc.b #0x80,ccr")
+#define ENINT()   __asm__ volatile ("andc.b #0x7f,ccr") 
+#define ENINT1()  __asm__ volatile ("andc.b #0xbf,ccr") 
+#define DISINT()  __asm__ volatile ("orc.b #0x80,ccr")
 #define ROMEMU()  RAMCR=0xf8
