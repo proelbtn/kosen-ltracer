@@ -15,6 +15,14 @@
 #define LCD_WIDTH 8
 #define LCD_HEIGHT 2
 
-// TODO: decide the time
-// timer count: unit = 1[us]
-#define TIMER_INT_TIME0 1000
+#define INT_BASE_RESOLUTION (0x1000 - 0x1)
+// lcd_handler is called every TIMER_INT_TIME0 * 0x400 = 16384[us] = 16.384[ms]
+#define INT_LCD_CALL_CYCLE_FLAG (0x100 - 0x1)
+// ad_handler is called every TIMER_INT_TIME0 * 0x1 = 64[us]
+#define INT_AD_CALL_CYCLE_FLAG (0x1 - 0x1)
+// motor_handler is called every TIMER_INT_TIME0 * 0x8= 512[us]
+#define INT_MOTOR_CALL_CYCLE_FLAG (0x8 - 0x1)
+
+// unit: 1[us]
+// Addition / Subtraction can be called only 800 times in 64[us]
+#define TIMER_INT_TIME0 64

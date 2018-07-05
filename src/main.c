@@ -7,11 +7,13 @@
 // =============================================================================
 
 unsigned char lcd_buffer[LCD_HEIGHT][LCD_WIDTH + 1];
-unsigned char lcd_update_flag;
+volatile unsigned char lcd_update_flag;
 
-unsigned char sensor_battery;
-unsigned char sensor_buffer[2][3];
-unsigned char sensor_buffer_ptr;
+volatile unsigned char sensor_battery;
+volatile unsigned char sensor_buffer[2][3];
+volatile unsigned char sensor_buffer_ptr;
+
+volatile unsigned char motor_update_flag;
 
 // =============================================================================
 
@@ -50,11 +52,15 @@ int main() {
     timer_set(0, TIMER_INT_TIME0);
     timer_start(0);
 
+    // initialize motor
+    motor_update_flag = FALSE;
+
     // enable interrupt
     ENINT();
     
     while(TRUE) {
         if (lcd_update_flag) {
+            // TODO: implement update flag or prod mode (disable LCD) or double buffering
             lcd_ensure_eof();
 
             lcd_cursor(0, UPPER);
@@ -63,6 +69,9 @@ int main() {
             lcd_printstr(lcd_buffer[LOWER]);
 
             lcd_update_flag = FALSE;
+        }
+        if (motor_update_flag) {
+            // TODO: implement motor processes
         }
     }
 }
@@ -85,8 +94,13 @@ inline void motor_handler(void) {
 
 #pragma interrupt
 void int_imia0(void) {
-    lcd_handler();
-    ad_handler();
+    static int scnt = 0;
+
+    scnt = (scnt + 1) & INT_BASE_RESOLUTION;
+
+    if (!(scnt & INT_LCD_CALL_CYCLE_FLAG)) lcd_handler();
+    if (!(scnt & INT_AD_CALL_CYCLE_FLAG)) ad_handler();
+    if (!(scnt & INT_MOTOR_CALL_CYCLE_FLAG)) motor_handler();
 
     timer_intflag_reset(0);
     ENINT();
