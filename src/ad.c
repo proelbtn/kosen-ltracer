@@ -1,4 +1,4 @@
-#include "h8-3069-iodef.h"
+#include "const.h"
 
 void ad_init();
 void ad_start(unsigned char ch, unsigned char int_sw);

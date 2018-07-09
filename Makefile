@@ -1,5 +1,5 @@
 TARGET = ltracer.mot
-SOURCE_C = src/main.c src/timer.c src/lcd.c
+SOURCE_C = src/main.c src/timer.c src/lcd.c src/ad.c
 SOURCE_ASM = 
 
 
@@ -35,7 +35,7 @@ INCLUDES = -I. -Iinclude
 #	-mint32：int型変数のビット数指定
 #	-O2：gccの最適化レベルの指定
 #	-Wall：コンパイル時の警告メッセージの選択(全て)
-CFLAGS = -mh -mrelax -mint32 -O2 $(INCLUDES) -Wall
+CFLAGS = -mh -mrelax -mint32 -O2 $(INCLUDES) -Wall -std=c99
 
 LDSCRIPT = $(LIB_PATH)/h8-3069-ram.x
 STARTUP = $(LIB_PATH)/ramcrt-ext.s
