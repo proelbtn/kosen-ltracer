@@ -78,10 +78,10 @@ int main() {
             bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
             bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
 
-            if (left == WHITE && right == WHITE) ; // turn left
-            if (left == WHITE && right == BLACK) ; // turn left, but ...
-            if (left == BLACK && right == WHITE) ; // go straight
-            if (left == BLACK && right == BLACK) ; // turn right
+            if (left == WHITE && right == WHITE) motor_set_mode(BACKWARD, FORWARD); // turn left
+            if (left == WHITE && right == BLACK) motor_set_mode(BACKWARD, FORWARD); // turn left, but ...
+            if (left == BLACK && right == WHITE) motor_set_mode(FORWARD, FORWARD); // go straight
+            if (left == BLACK && right == BLACK) motor_set_mode(FORWARD, BACKWARD); // turn right
 
             pleft = left; pright = right;
 

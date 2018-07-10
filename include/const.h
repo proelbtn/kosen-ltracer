@@ -1,3 +1,5 @@
+#pragma once
+
 #include "h8-3069/int.h"
 #include "h8-3069/iodef.h"
 
@@ -35,7 +37,7 @@ typedef unsigned char bool;
 #define INT_MOTOR_CALL_CYCLE_FLAG (0x8 - 0x1)
 
 // TODO: decide
-#define SENSOR_THRESHOLD 128
+#define SENSOR_THRESHOLD 180
 
 // unit: 1[us]
 // Addition / Subtraction can be called only 1600 times in 128[us]
