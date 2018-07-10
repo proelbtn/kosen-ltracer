@@ -1,3 +1,5 @@
+#pragma once
+
 #include "h8-3069/int.h"
 #include "h8-3069/iodef.h"
 
