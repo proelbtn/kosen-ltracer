@@ -3,6 +3,7 @@
 #include "ad.h"
 #include "lcd.h"
 #include "timer.h"
+#include "motor.h"
 
 // =============================================================================
 
@@ -53,6 +54,7 @@ int main() {
     timer_start(0);
 
     // initialize motor
+    motor_init();
     motor_update_flag = FALSE;
 
     // enable interrupt
@@ -72,6 +74,8 @@ int main() {
         }
         if (motor_update_flag) {
             // TODO: implement motor processes
+            motor_set_mode(FORWARD, FORWARD);
+            motor_update_flag = FALSE;
         }
     }
 }
@@ -87,7 +91,7 @@ inline void ad_handler(void) {
 }
 
 inline void motor_handler(void) {
-       
+    motor_update_flag = TRUE;
 }
 
 // =============================================================================
