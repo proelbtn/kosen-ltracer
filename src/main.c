@@ -58,6 +58,7 @@ int main() {
     // enable interrupt
     ENINT();
     
+    bool pleft, pright;
     while(TRUE) {
         if (lcd_update_flag) {
             // TODO: implement update flag or prod mode (disable LCD) or double buffering
@@ -71,7 +72,17 @@ int main() {
             lcd_update_flag = FALSE;
         }
         if (motor_update_flag) {
-            // TODO: implement motor processes
+            bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
+            bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
+
+            if (left == WHITE && right == WHITE) ; // turn left
+            if (left == WHITE && right == BLACK) ; // turn left, but ...
+            if (left == BLACK && right == WHITE) ; // go straight
+            if (left == BLACK && right == BLACK) ; // turn right
+
+            pleft = left; pright = right;
+
+            lcd_update_flag = FALSE;
         }
     }
 }
@@ -87,7 +98,7 @@ inline void ad_handler(void) {
 }
 
 inline void motor_handler(void) {
-       
+    motor_update_flag = TRUE;      
 }
 
 // =============================================================================

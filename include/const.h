@@ -1,8 +1,13 @@
 #include "h8-3069/int.h"
 #include "h8-3069/iodef.h"
 
+typedef unsigned char bool;
+
 #define FALSE 0
 #define TRUE 1
+
+#define BLACK FALSE
+#define WHITE TRUE
 
 #define UPPER 0
 #define LOWER 1
@@ -23,6 +28,9 @@
 #define INT_AD_CALL_CYCLE_FLAG (0x1 - 0x1)
 // motor_handler is called every TIMER_INT_TIME0 * 0x4 = 512[us]
 #define INT_MOTOR_CALL_CYCLE_FLAG (0x8 - 0x1)
+
+// TODO: decide
+#define SENSOR_THRESHOLD 128
 
 // unit: 1[us]
 // Addition / Subtraction can be called only 1600 times in 128[us]
