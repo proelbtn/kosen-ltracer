@@ -54,6 +54,7 @@ int main() {
     timer_start(0);
 
     // initialize motor
+    motor_init();
     motor_update_flag = FALSE;
 
     // enable interrupt

@@ -27,13 +27,13 @@ void motor_set_mode_right(unsigned char mode) {
             PBDR = (PBDR & ~0x03) | 0x00;
             break;
         case FORWARD:
-            PBDR = (PBDR & ~0x03) | 0x02;
+            PBDR = (PBDR & ~0x03) | 0x08;
             break;
         case BACKWARD:
-            PBDR = (PBDR & ~0x03) | 0x01;
+            PBDR = (PBDR & ~0x03) | 0x04;
             break;
         case BRAKE:
-            PBDR = (PBDR & ~0x03) | 0x03;
+            PBDR = (PBDR & ~0x03) | 0x0B;
             break;
     }
 }
