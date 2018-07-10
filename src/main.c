@@ -74,8 +74,7 @@ int main() {
         }
         if (motor_update_flag) {
             // TODO: implement motor processes
-            motor_set_mode_left(FORWARD);
-            motor_set_mode_right(FORWARD);
+            motor_set_mode(FORWARD, FORWARD);
             motor_update_flag = FALSE;
         }
     }
