@@ -3,6 +3,7 @@
 #include "ad.h"
 #include "lcd.h"
 #include "timer.h"
+#include "motor.h"
 
 // =============================================================================
 
@@ -53,6 +54,7 @@ int main() {
     timer_start(0);
 
     // initialize motor
+    motor_init();
     motor_update_flag = FALSE;
 
     // enable interrupt
@@ -72,6 +74,7 @@ int main() {
             lcd_update_flag = FALSE;
         }
         if (motor_update_flag) {
+
             bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
             bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
 
@@ -98,7 +101,7 @@ inline void ad_handler(void) {
 }
 
 inline void motor_handler(void) {
-    motor_update_flag = TRUE;      
+    motor_update_flag = TRUE;
 }
 
 // =============================================================================
