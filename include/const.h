@@ -9,6 +9,11 @@
 #define LEFT 0
 #define RIGHT 1
 
+#define STOP 0
+#define FORWARD 1
+#define BACKWARD 2
+#define BRAKE 3
+
 #define SENSOR_BUFFER_SIZE 16
 #define SENSOR_BUFFER_SIZE_FILTER 0x0F
 

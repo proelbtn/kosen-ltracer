@@ -3,6 +3,7 @@
 #include "ad.h"
 #include "lcd.h"
 #include "timer.h"
+#include "motor.h"
 
 // =============================================================================
 
@@ -72,6 +73,9 @@ int main() {
         }
         if (motor_update_flag) {
             // TODO: implement motor processes
+            motor_set_mode_left(FORWARD);
+            motor_set_mode_right(FORWARD);
+            motor_update_flag = FALSE;
         }
     }
 }
@@ -87,7 +91,7 @@ inline void ad_handler(void) {
 }
 
 inline void motor_handler(void) {
-       
+    motor_update_flag = TRUE;
 }
 
 // =============================================================================
