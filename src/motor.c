@@ -12,10 +12,10 @@ void motor_set_mode(unsigned char left, unsigned char right) {
             flag |= 0x00;
             break;
         case FORWARD:
-            flag |= 0x02;
+            flag |= 0x01;
             break;
         case BACKWARD:
-            flag |= 0x01;
+            flag |= 0x02;
             break;
         case BRAKE:
             flag |= 0x03;
