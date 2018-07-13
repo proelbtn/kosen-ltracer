@@ -11,7 +11,7 @@ unsigned char lcd_buffer[LCD_HEIGHT][LCD_WIDTH + 1];
 volatile unsigned char lcd_update_flag;
 
 volatile unsigned char sensor_battery;
-volatile unsigned char sensor_buffer[2][3];
+volatile unsigned char sensor_buffer[2][SENSOR_BUFFER_SIZE];
 volatile unsigned char sensor_buffer_ptr;
 
 volatile unsigned char motor_update_flag;
@@ -60,7 +60,6 @@ int main() {
     // enable interrupt
     ENINT();
     
-    bool pleft, pright;
     while(TRUE) {
         if (lcd_update_flag) {
             // TODO: implement update flag or prod mode (disable LCD) or double buffering
@@ -74,18 +73,18 @@ int main() {
             lcd_update_flag = FALSE;
         }
         if (motor_update_flag) {
-
             bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
             bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
 
-            if (left == WHITE && right == WHITE) motor_set_mode(BACKWARD, FORWARD); // turn left
-            if (left == WHITE && right == BLACK) motor_set_mode(BACKWARD, FORWARD); // turn left, but ...
-            if (left == BLACK && right == WHITE) motor_set_mode(FORWARD, FORWARD); // go straight
-            if (left == BLACK && right == BLACK) motor_set_mode(FORWARD, BACKWARD); // turn right
+            if (left == WHITE && right == WHITE) motor_set_mode(BACKWARD, FORWARD);
+            if (left == WHITE && right == BLACK) motor_set_mode(BACKWARD, FORWARD);
+            if (left == BLACK && right == WHITE) motor_set_mode(FORWARD, FORWARD);
+            if (left == BLACK && right == BLACK) motor_set_mode(FORWARD, BACKWARD);
 
-            pleft = left; pright = right;
+            lcd_buffer[UPPER][0] = right == WHITE ? 'W' : 'B';
+            lcd_buffer[UPPER][7] = left == WHITE ? 'W' : 'B';
 
-            lcd_update_flag = FALSE;
+            motor_update_flag = FALSE;
         }
     }
 }
