@@ -32,7 +32,7 @@ typedef unsigned char bool;
 // lcd_handler is called every TIMER_INT_TIME0 * 0x100 = 32768[us] = 32.768[ms]
 #define INT_LCD_CALL_CYCLE_FLAG (0x100 - 0x1)
 // ad_handler is called every TIMER_INT_TIME0 * 0x1 = 128[us]
-#define INT_AD_CALL_CYCLE_FLAG (0x1 - 0x1)
+#define INT_AD_CALL_CYCLE_FLAG (0x2 - 0x1)
 // motor_handler is called every TIMER_INT_TIME0 * 0x4 = 512[us]
 #define INT_MOTOR_CALL_CYCLE_FLAG (0x8 - 0x1)
 

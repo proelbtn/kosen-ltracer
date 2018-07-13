@@ -83,6 +83,8 @@ int main() {
 
             lcd_buffer[UPPER][0] = right == WHITE ? 'W' : 'B';
             lcd_buffer[UPPER][7] = left == WHITE ? 'W' : 'B';
+            lcd_buffer[LOWER][0] = "0123456789ABCDEF"[(sensor_battery & 0xF0) >> 4];
+            lcd_buffer[LOWER][1] = "0123456789ABCDEF"[sensor_battery & 0xF];
 
             motor_update_flag = FALSE;
         }
