@@ -36,6 +36,9 @@ int main() {
     // enable ROM emulation
     ROMEMU();
 
+    // port initialize
+    P6DDR = 0x00;
+
     // initialize A/D converter
     ad_init();
 
@@ -59,6 +62,9 @@ int main() {
 
     // enable interrupt
     ENINT();
+
+    // until key is pressed, sleep this line
+    while (P6DR & 0x03 != 0x03) lcd_update_flag = motor_update_flag = FALSE;
     
     bool flag = FALSE;
     bool fleft, fright;
