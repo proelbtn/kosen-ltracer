@@ -60,9 +60,10 @@ int main() {
     // enable interrupt
     ENINT();
     
+    bool flag = FALSE;
+    bool fleft, fright;
     while(TRUE) {
         if (lcd_update_flag) {
-            // TODO: implement update flag or prod mode (disable LCD) or double buffering
             lcd_ensure_eof();
 
             lcd_cursor(0, UPPER);
@@ -76,10 +77,17 @@ int main() {
             bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
             bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
 
+            if (flag && (left != BLACK || right != WHITE)) {
+                motor_update_flag = FALSE;
+                continue;
+            }
+
             if (left == WHITE && right == WHITE) motor_set_mode(BACKWARD, FORWARD);
             if (left == WHITE && right == BLACK) motor_set_mode(BACKWARD, FORWARD);
             if (left == BLACK && right == WHITE) motor_set_mode(FORWARD, FORWARD);
             if (left == BLACK && right == BLACK) motor_set_mode(FORWARD, BACKWARD);
+
+            if (left != BLACK || right != WHITE) flag = TRUE;
 
             lcd_buffer[UPPER][0] = right == WHITE ? 'W' : 'B';
             lcd_buffer[UPPER][7] = left == WHITE ? 'W' : 'B';
