@@ -77,13 +77,21 @@ int main() {
             lcd_update_flag = FALSE;
         }
         if (start_flag && motor_update_flag) {
-            bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
-            bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
+            int l, r;
+            int ptr = (sensor_buffer_ptr + SENSOR_BUFFER_SIZE - 5) % SENSOR_BUFFER_SIZE;
+            l = r = 0;
+            for (int i = 0; i < 5; i++) {
+                l += SENSOR_THRESHOLD >= sensor_buffer[LEFT][(ptr + i) % SENSOR_BUFFER_SIZE];
+                r += SENSOR_THRESHOLD >= sensor_buffer[RIGHT][(ptr + i) % SENSOR_BUFFER_SIZE];
+            }
+
+            bool left = l > 2, right = r > 2;
 
             if (flag && (left != BLACK || right != WHITE)) {
                 motor_update_flag = FALSE;
                 continue;
             }
+            flag = FALSE;
 
             if (left == WHITE && right == WHITE) motor_set_mode(BACKWARD, FORWARD);
             if (left == WHITE && right == BLACK) motor_set_mode(BACKWARD, FORWARD);
