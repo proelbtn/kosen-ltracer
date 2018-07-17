@@ -40,3 +40,4 @@ void motor_set_mode(unsigned char left, unsigned char right) {
 
     PBDR = (PBDR & 0xF0) | flag;
 }
+

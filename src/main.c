@@ -64,9 +64,8 @@ int main() {
     ENINT();
 
     bool flag = FALSE, start_flag = FALSE;
-    bool fleft, fright;
     while(TRUE) {
-        if (P6DR & 0x03 == 0x03) start_flag = TRUE;
+        if ((P6DR & 0x03) == 0x03) start_flag = TRUE;
         if (lcd_update_flag) {
             lcd_ensure_eof();
 
