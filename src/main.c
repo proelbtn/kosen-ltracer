@@ -63,12 +63,10 @@ int main() {
     // enable interrupt
     ENINT();
 
-    // until key is pressed, sleep this line
-    while (P6DR & 0x03 != 0x03) lcd_update_flag = motor_update_flag = FALSE;
-    
-    bool flag = FALSE;
+    bool flag = FALSE, start_flag = FALSE;
     bool fleft, fright;
     while(TRUE) {
+        if (P6DR & 0x03 == 0x03) start_flag = TRUE;
         if (lcd_update_flag) {
             lcd_ensure_eof();
 
@@ -79,7 +77,7 @@ int main() {
 
             lcd_update_flag = FALSE;
         }
-        if (motor_update_flag) {
+        if (start_flag && motor_update_flag) {
             bool left = SENSOR_THRESHOLD >= sensor_buffer[LEFT][sensor_buffer_ptr];
             bool right = SENSOR_THRESHOLD >= sensor_buffer[RIGHT][sensor_buffer_ptr];
 
