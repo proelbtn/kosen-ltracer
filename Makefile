@@ -1,5 +1,12 @@
 TARGET = ltracer.mot
-SOURCE_C = src/main.c src/timer.c src/lcd.c src/ad.c src/motor.c src/sensor.c
+SOURCE_C = src/main.c \
+		   src/h8-3069/timer.c \
+		   src/h8-3069/lcd.c \
+		   src/h8-3069/ad.c \
+		   src/control.c \
+		   src/display.c \
+		   src/motor.c \
+		   src/sensor.c
 SOURCE_ASM = 
 
 

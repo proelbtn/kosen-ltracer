@@ -29,10 +29,10 @@ void control_update() {
     bool left = sensor_get_left() < SENSOR_THRESHOLD;
     bool right = sensor_get_right() < SENSOR_THRESHOLD;
 
-    if (left == SENSOR_BLACK && right == SENSOR_BLACK) motor_set_state(MOTOR_FORWARD, MOTOR_BACKWARD); 
-    if (left == SENSOR_WHITE && right == SENSOR_BLACK) motor_set_state(MOTOR_BACKWARD, MOTOR_FORWARD); 
-    if (left == SENSOR_BLACK && right == SENSOR_WHITE) motor_set_state(MOTOR_FORWARD, MOTOR_FORWARD); 
-    if (left == SENSOR_WHITE && right == SENSOR_WHITE) motor_set_state(MOTOR_BACKWARD, MOTOR_FORWARD); 
+    if (left == SENSOR_BLACK && right == SENSOR_BLACK) motor_set_states(MOTOR_FORWARD, MOTOR_BACKWARD); 
+    if (left == SENSOR_WHITE && right == SENSOR_BLACK) motor_set_states(MOTOR_BACKWARD, MOTOR_FORWARD); 
+    if (left == SENSOR_BLACK && right == SENSOR_WHITE) motor_set_states(MOTOR_FORWARD, MOTOR_FORWARD); 
+    if (left == SENSOR_WHITE && right == SENSOR_WHITE) motor_set_states(MOTOR_BACKWARD, MOTOR_FORWARD); 
 }
 
 void control_reset_update_flag() {

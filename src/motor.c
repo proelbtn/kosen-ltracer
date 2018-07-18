@@ -13,7 +13,7 @@ unsigned char motor_prev_states[2];
 unsigned char motor_now_states[2];
 
 // モータの制御を行う関数
-static void motor_change_mode(unsigned char left, unsigned char right);
+static void motor_change_states(unsigned char left, unsigned char right);
 
 // ===================================================================
 
@@ -33,14 +33,14 @@ void motor_int_handler() {
     // モーターをその状態にする（状態の更新は冗長なのでしていない）
     if (motor_prev_states[MOTOR_LEFT] == motor_now_states[MOTOR_LEFT] && 
         motor_prev_states[MOTOR_RIGHT] == motor_now_states[MOTOR_RIGHT]) {
-        motor_change_mode(motor_now_states[MOTOR_LEFT], motor_now_states[MOTOR_RIGHT]);
+        motor_change_states(motor_now_states[MOTOR_LEFT], motor_now_states[MOTOR_RIGHT]);
     }
 
     // もし、前回のモーターの状態と今回のモーターの状態が異なるなら
     // モーターをMOTOR_STOP状態にする（貫通電流対策）
     // そして、古い状態を新しい状態で書き換える
     else {
-        motor_change_mode(MOTOR_STOP, MOTOR_STOP);
+        motor_change_states(MOTOR_STOP, MOTOR_STOP);
         motor_prev_states[MOTOR_LEFT] = motor_now_states[MOTOR_LEFT];
         motor_prev_states[MOTOR_RIGHT] = motor_now_states[MOTOR_RIGHT];
     }
@@ -48,7 +48,7 @@ void motor_int_handler() {
 
 // ===================================================================
 
-void motor_set_mode(unsigned char left, unsigned char right) {
+void motor_set_states(unsigned char left, unsigned char right) {
     // 次の状態を設定する
     motor_now_states[MOTOR_LEFT] = left;
     motor_now_states[MOTOR_RIGHT] = right;
@@ -56,7 +56,7 @@ void motor_set_mode(unsigned char left, unsigned char right) {
 
 // ===================================================================
 
-static void motor_change_mode(unsigned char left, unsigned char right) {
+static void motor_change_states(unsigned char left, unsigned char right) {
     // 与えられた状態に応じてフラグを設定し、それをポートに書き込んでいる
     unsigned char flag = 0x00;
 

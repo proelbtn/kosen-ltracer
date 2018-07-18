@@ -37,6 +37,10 @@ void sensor_init() {
     sensor_total[SENSOR_RIGHT] = 0;
 }
 
+void sensor_int_handler() {
+    ad_scan(0, TRUE);
+}
+
 void sensor_ad_handler() {
     int temp;
     ad_stop();

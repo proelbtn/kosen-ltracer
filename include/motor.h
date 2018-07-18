@@ -17,6 +17,6 @@ void motor_init();
 void motor_int_handler();
 
 // 次の状態を設定する関数
-void motor_set_state(unsigned char left, unsigned char right);
+void motor_set_states(unsigned char left, unsigned char right);
 
 #endif
