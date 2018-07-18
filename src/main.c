@@ -21,6 +21,7 @@ int main() {
     timer_start(0);
     ENINT();
     
+
     while(TRUE) {
         // もしディスプレイ更新フラグが立っていたら、ディスプレイを更新する
         if (display_get_update_flag()) {

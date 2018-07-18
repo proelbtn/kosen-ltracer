@@ -4,10 +4,12 @@
 #include "const.h"
 
 // 割り込みの周期を決定する定数（タイマーを128分周する）
-#define DISPLAY_INT_MASK 0x7F
+#define DISPLAY_INT_MASK 0xFF
 
 #define DISPLAY_LOWER 1
 #define DISPLAY_UPPER 0
+
+extern char display_hbuffer[2][8];
 
 // 初期化関数と割り込みハンドラ
 void display_init();

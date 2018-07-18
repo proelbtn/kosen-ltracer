@@ -40,7 +40,7 @@ void motor_int_handler() {
     // モーターをMOTOR_STOP状態にする（貫通電流対策）
     // そして、古い状態を新しい状態で書き換える
     else {
-        motor_change_states(MOTOR_STOP, MOTOR_STOP);
+        motor_change_states(MOTOR_BRAKE, MOTOR_BRAKE);
         motor_prev_states[MOTOR_LEFT] = motor_now_states[MOTOR_LEFT];
         motor_prev_states[MOTOR_RIGHT] = motor_now_states[MOTOR_RIGHT];
     }

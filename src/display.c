@@ -4,7 +4,7 @@
 // ===================================================================
 
 // ダブルバッファリング用のバッファ
-static char display_hbuffer[2][8];
+char display_hbuffer[2][8];
 static char display_lbuffer[2][8];
 
 static bool display_update_flag;

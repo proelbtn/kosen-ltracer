@@ -1,4 +1,5 @@
 #include "control.h"
+#include "display.h"
 #include "sensor.h"
 #include "motor.h"
 
@@ -26,6 +27,18 @@ bool control_get_update_flag() {
 void control_update() {
     // 何かいろいろしている所
     unsigned char battery = sensor_get_battery();
+
+    unsigned char lval = sensor_get_left();
+    unsigned char rval = sensor_get_right();
+    unsigned char bval = sensor_get_battery();
+
+    display_hbuffer[0][0] = "0123456789ABCDEF"[(lval >> 4) % 16];
+    display_hbuffer[0][1] = "0123456789ABCDEF"[lval % 16];
+    display_hbuffer[0][6] = "0123456789ABCDEF"[(rval >> 4) % 16];
+    display_hbuffer[0][7] = "0123456789ABCDEF"[rval % 16];
+    display_hbuffer[1][3] = "0123456789ABCDEF"[(bval >> 4) % 16];
+    display_hbuffer[1][4] = "0123456789ABCDEF"[bval % 16];
+
     bool left = sensor_get_left() < SENSOR_THRESHOLD;
     bool right = sensor_get_right() < SENSOR_THRESHOLD;
 
