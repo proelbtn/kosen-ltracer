@@ -71,7 +71,7 @@ static void motor_change_states(unsigned char left, unsigned char right) {
         case MOTOR_STOP: flag |= 0x00; break;
         case MOTOR_FORWARD: flag |= 0x04; break;
         case MOTOR_BACKWARD: flag |= 0x08; break;
-        case MOTOR_BRAKE: flag |= 0x0B; break;
+        case MOTOR_BRAKE: flag |= 0x0C; break;
     }
 
     PBDR = (PBDR & 0xF0) | flag;

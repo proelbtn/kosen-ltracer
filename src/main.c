@@ -2,6 +2,7 @@
 #include "display.h"
 #include "motor.h"
 #include "sensor.h"
+#include "h8-3069/timer.h"
 
 // ===================================================================
 
@@ -17,7 +18,7 @@ int main() {
 
     // 割り込みの設定をする
     timer_init();
-    timer_set(0, 128);      // 128[us]毎に呼び出す
+    timer_set(0, 1024);
     timer_start(0);
     ENINT();
     

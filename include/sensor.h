@@ -4,7 +4,7 @@
 #include "const.h"
 
 // 割り込みの周期を決定する定数（タイマーを1分周する）
-#define SENSOR_INT_MASK 0x0
+#define SENSOR_INT_MASK 0xF
 
 // 白と黒の境界に利用すべき値とその色
 // 仮にセンサーがvalという値を読んだとする
@@ -15,6 +15,7 @@
 
 // 初期化関数と割り込みハンドラ
 void sensor_init();
+void sensor_int_handler();
 void sensor_ad_handler();
 
 // 各センサーの値を取ってくる関数
