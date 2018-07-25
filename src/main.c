@@ -18,7 +18,7 @@ int main() {
 
     // 割り込みの設定をする
     timer_init();
-    timer_set(0, 1024);
+    timer_set(0, 256);
     timer_start(0);
     ENINT();
     
