@@ -4,7 +4,7 @@
 #include "const.h"
 
 // 割り込みの周期を決定する定数（タイマーを1分周する）
-#define MOTOR_INT_MASK 0x7
+#define MOTOR_INT_MASK 0x1
 
 // モーターの状態を設定する際に用いる定数
 #define MOTOR_STOP 0

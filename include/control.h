@@ -4,7 +4,7 @@
 #include "const.h"
 
 // 割り込みの周期を決定する定数（タイマーを16分周する）
-#define CONTROL_INT_MASK 0xF
+#define CONTROL_INT_MASK 0x1
 
 // 初期化関数と割り込みハンドラ
 void control_init();
